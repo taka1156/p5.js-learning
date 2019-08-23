@@ -38,10 +38,7 @@ class Ball{
     }
 
     move(){
-        this.vecLocation.x += random(-this.speed, this.speed);
-
-        this.vecLocation.y += random(-this.speed, this.speed);
-
+        
         if( this.vecLocation.x < 0 || this.vecLocation.x > windowWidth-10){
             this.vecVelocity.x = this.vecVelocity.x * -1;
         }
