@@ -1,0 +1,43 @@
+<!DOCTYPE html><html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+   <title>傾きで図形を回す</title>
+</head>
+<body>
+<style type="text/css">
+
+* {
+	margin : 0 ;
+	padding : 0 ; 
+	font-size : 100% ;
+}
+
+body {
+	font-size : 75% ;
+	text-align : center ;
+	line-height : 1.4 ;
+}
+
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+
+<script>
+let box_1
+const BoxSIZE = 100;
+
+function setup() {
+    let canvas1 = createCanvas(windowWidth, windowHeight, WEBGL);
+}
+  
+function draw() {
+    background(200);
+    rotateX(radians(rotationX));
+    rotateY(radians(rotationY));
+    rotateZ(radians(rotationX));
+    box(100,100,100);
+}
+
+</script>

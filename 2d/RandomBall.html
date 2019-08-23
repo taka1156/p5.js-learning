@@ -23,34 +23,46 @@ body {
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+<script src="../js/p5.collide2d.min.js"></script>
 
 <script>
 let Balls = [];
 
 let  X,Y;
 X=Y= null;
-
+let Speed = 0;
+let touchBallid;
 class Ball{
-    constructor(){
-        this.vecLocation = createVector(random(width),random(height));
-        this.vecVelocity = createVector(20, 30);
-        this.diameter = random(25);
-        this.speed = 30;
+    constructor(id){
+        this.speed = 4;
+        this.vecLocation = createVector(random(width), random(height));
+        this.vecVelocity = createVector(this.speed, this.speed);
+        this.diameter = 20;
         this.R = random(255);
         this.G = random(255);
         this.B = random(255);
-        
-        if(X !== null || Y !== null){
-            this.vecLocation = createVector(X, Y);
-            this.diameter = 30;
+        this.hit = false;
+        this.id = id;
 
+        if(X !==null && Y !==null){
+            this.vecLocation = createVector(X, Y);
+        }
+
+        for(let i=0; i<Balls.length; i++){
+            if(this.id !==  Balls[i].id){
+                this.hit = collideCircleCircle(this.vecLocation.x, this.vecLocation.y, this.diameter+1, Balls[i].vecLocation.x, Balls[i].vecLocation.y, Balls[i].diameter+1);
+                if(this.hit === true){
+                    this.vecLocation = createVector(random(width),random(height));
+                }
+            }
         }
     }
 
-    move(){
-        this.vecLocation.x += random(-this.speed, this.speed);
+    SetSpeed(speed){
+        this.speed = speed;
+    }
 
-        this.vecLocation.y += random(-this.speed, this.speed);
+    move(){
 
         if( this.vecLocation.x < 0 || this.vecLocation.x > windowWidth-10){
             this.vecVelocity.x = this.vecVelocity.x * -1;
@@ -62,32 +74,40 @@ class Ball{
 
     display(){
         this.vecLocation.add(this.vecVelocity);
-        fill(this.R, this.G, this.B)
+        fill(this.R, this.G, this.B);
         ellipse(this.vecLocation.x, this.vecLocation.y, this.diameter, this.diameter);
     }
 }
 
 function setup(){
     createCanvas(windowWidth-10, windowHeight-10);
-    for(let i =0; i<50; i++){
-       Balls.push(new Ball());
+    for(let i = 0; i < 5; i++){
+        Balls.push(new Ball(i));
     }
+    touchBallid = Balls.length-1;
 }
 
 function draw(){
     background(0);
     for(let i=0; i<Balls.length; i++){
         Balls[i].move();
+        Balls[i].SetSpeed(Speed);
         Balls[i].display();
     }
 
+    let time = second();
+
     if(mouseIsPressed){
-        X = mouseX;
-        Y = mouseY;
-        Balls.push(new Ball());
-        Balls.push(new Ball());
-        Balls.push(new Ball());
+        //ボールが重なるのを防ぐ
+        X = mouseX + random(0,5);
+        Y = mouseY + random(0,5);
+        touchBallid++;
+        Balls.push(new Ball(touchBallid));
     }
+}
+
+function deviceShaken() {
+    Speed+=1;
 }
 </script>
 </body>
