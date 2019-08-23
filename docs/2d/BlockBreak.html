@@ -1,0 +1,303 @@
+<!DOCTYPE html><html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+  <title>ブロック崩し</title>
+</head>
+<body>
+<style type="text/css">
+
+* {
+	margin : 0 ;
+	padding : 0 ; 
+	font-size : 100% ;
+}
+
+body {
+	font-size : 75% ;
+	text-align : center ;
+	line-height : 1.4 ;
+}
+
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+<script src="../js/p5.collide2d.min.js"></script>
+
+<script>
+let Blocks = [];//ブロック配列
+let Paddle;//パドルオブジェクト
+let PlayerBall;//ボールオブジェクト
+const BallSpeed = 5;
+const BallDiameter = 18;//ボールの直径
+const Block_sizeX = 90;//block1個当たりのｘ座標
+const Block_sizeY = 20;//block1個当たりのy座標
+const Row = 10;//行
+const Column = 10;//列
+
+class Block{
+    constructor(posX,posY){
+        this.x = posX;//初期座標X
+        this.y = posY;//初期座標Y
+        this.block_sizeX = Block_sizeX;//サイズX
+        this.block_sizeY = Block_sizeY;//サイズY
+        this.R=this.GB=255;//色
+        this.hit = false;//当たり判定
+    }
+
+    hitCheck(posX, posY, diameter){
+        if(this.hit === true)return;
+        this.hit = collideRectCircle(this.x, this.y, this.block_sizeX, this.block_sizeY, posX, posY, diameter);
+        if(this.hit === true){
+            this.x = this.y = this.block_sizeX = this.block_sizeY = 0;
+        }
+    }
+
+    display(){
+        if(this.hit === true)return;
+        fill(this.R,this.GB,this.GB)
+        rect(this.x, this.y, this.block_sizeX, this.block_sizeY);
+    }
+}
+
+class Ball{
+    constructor(id){
+        this.vecLocation = createVector(width * 0.5 ,height * 0.85);//初期位置
+        this.vecVelocity = createVector(BallSpeed,BallSpeed);//速さ
+        this.diameter = BallDiameter;//直径
+        this.R=this.GB=255;//色
+        this.hit = false;//衝突フラグ
+    }
+
+    move(posX, posY, sizeX, sizeY){
+        this.hit = collideRectCircle(posX, posY, sizeX, sizeY, this.vecLocation.x, this.vecLocation.y, this.diameter);
+        if(this.hit === true){
+            this.R=255;
+            this.GB = 0;
+        }else{
+            this.R=this.GB = 255;
+        }
+
+        if(this.vecLocation.x < 0 || this.vecLocation.x > width){
+            this.vecVelocity.x = this.vecVelocity.x * -1;
+        }
+        if(this.hit || this.vecLocation.y < 0 || this.vecLocation.y > height){
+            this.vecVelocity.y = this.vecVelocity.y * -1;
+            
+        }
+    }
+
+    display(){
+        this.vecLocation.add(this.vecVelocity);
+        fill(this.R, this.GB, this.GB)
+        ellipse(this.vecLocation.x, this.vecLocation.y, this.diameter, this.diameter);
+    }
+}
+
+
+class RectPaddle{
+    constructor(){
+        this.x = width * 0.5;//初期パドル座標X
+        this.y = height *0.9;//初期パドル座標Y
+        this.Paddle_sizeX = width * 0.12;//サイズX
+        this.Paddle_sizeY = height * 0.02;//サイズY
+        this.speed = 1;//操作スピード
+    }
+
+    move(mouse){
+        this.x = Math.max(0, Math.min((mouse * this.speed), width - this.Paddle_sizeX));
+    }
+
+    display(){
+        fill('gray');
+        rect(this.x, this.y, this.Paddle_sizeX, this.Paddle_sizeY);
+    }
+}
+
+function setup(){
+    createCanvas(windowWidth-10, windowHeight-10);
+    for(let i = 0; i < Row; i++){
+        for(let j = 0; j < Column; j++){
+            Blocks.push(new Block(Block_sizeX*(j+1)+20*(j+1), Block_sizeY*(i+1)+20*(i+1)));
+        }
+    }
+    console.log(Blocks);
+    Paddle = new RectPaddle();
+    PlayerBall = new Ball();
+}
+
+function draw(){
+    background(0);
+    PlayerBall.move(Paddle.x, Paddle.y, Paddle.Paddle_sizeX, Paddle.Paddle_sizeY);
+    PlayerBall.display();
+
+    let count = 0;
+    for(let i = 0; i < Blocks.length; i++){
+        PlayerBall.move(Blocks[i].x, Blocks[i].y, Blocks[i].block_sizeX, Blocks[i].block_sizeY);
+        Blocks[i].hitCheck(PlayerBall.vecLocation.x, PlayerBall.vecLocation.y, PlayerBall.diameter);
+        Blocks[i].display();
+    }
+
+    if(mouseIsPressed){
+        let X = mouseX;
+        Paddle.move(X);
+    }
+    Paddle.display();
+}
+</script>
+</body>
+</html>
+
+<!--
+<!DOCTYPE html><html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+  <title>Hello, world!</title>
+</head>
+<body>
+<style type="text/css">
+
+* {
+	margin : 0 ;
+	padding : 0 ; 
+	font-size : 100% ;
+}
+
+body {
+	font-size : 75% ;
+	text-align : center ;
+	line-height : 1.4 ;
+}
+
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+<script src="p5.collide2d.min.js"></script>
+
+<script>
+
+let Blocks = [];//ブロック配列
+let Paddle;//操作板?オブジェクト
+let PlayerBall;//ボールのオブジェクト
+const BallDiameter = 18;//ボールの直系
+const Block_sizeX = 70;//block1個当たりのｘ座標
+const Block_sizeY = 20;//block1個当たりのy座標
+const Row = 10;//行
+const Column = 10;//列
+
+class Block{
+    constructor(posX,posY){
+        this.x = posX;//初期座標X
+        this.y = posY;//初期座標Y
+        this.block_sizeX = Block_sizeX;//サイズX
+        this.block_sizeY = Block_sizeY;//サイズY
+        this.R=this.GB=255;//色
+        this.hit = false;//当たり判定
+    }
+
+    hitCheck(posX, posY, diameter){
+        if(this.hit === true)return;
+        this.hit = collideRectCircle(this.x, this.y, this.block_sizeX, this.block_sizeY, posX, posY, diameter);
+        if(this.hit === true){
+            this.x = this.y = this.block_sizeX = this.block_sizeY = 0;
+        }
+    }
+
+    display(){
+        if(this.hit === true)return;
+        fill(this.R,this.GB,this.GB)
+        rect(this.x, this.y, this.block_sizeX, this.block_sizeY);
+    }
+}
+
+class Ball{
+    constructor(id){
+        this.vecLocation = createVector(width * 0.5 ,height * 0.85);//初期位置
+        this.vecVelocity = createVector(4,4);//速さ
+        this.diameter = BallDiameter;//直径
+        this.R=this.GB=255;//色
+        this.hit = false;//衝突フラグ
+    }
+
+    move(posX, posY, sizeX, sizeY){
+        this.hit = collideRectCircle(posX, posY, sizeX, sizeY, this.vecLocation.x, this.vecLocation.y, this.diameter);
+        if(this.hit === true){
+            this.R=255;
+            this.GB = 0;
+        }else{
+            this.R=this.GB = 255;
+        }
+
+        if(this.vecLocation.x < 0 || this.vecLocation.x > width){
+            this.vecVelocity.x = this.vecVelocity.x * -1;
+        }
+        if(this.hit || this.vecLocation.y < 0 || this.vecLocation.y > height){
+            this.vecVelocity.y = this.vecVelocity.y * -1;
+            
+        }
+    }
+
+    display(){
+        this.vecLocation.add(this.vecVelocity);
+        fill(this.R, this.GB, this.GB)
+        ellipse(this.vecLocation.x, this.vecLocation.y, this.diameter, this.diameter);
+    }
+}
+
+
+class RectPaddle{
+    constructor(){
+        this.x = width * 0.5;//初期パドル座標X
+        this.y = height *0.85;//初期パドル座標Y
+        this.Paddle_sizeX = width * 0.16;//サイズX
+        this.Paddle_sizeY = height * 0.02;//サイズY
+        this.speed = 1;//操作スピード
+    }
+
+    move(mouse){
+        this.x = Math.max(0, Math.min((mouse * this.speed), width - this.Paddle_sizeX));
+    }
+
+    display(){
+        fill('gray');
+        rect(this.x, this.y, this.Paddle_sizeX, this.Paddle_sizeY);
+    }
+}
+
+function setup(){
+    createCanvas(windowWidth-10, windowHeight-10);
+    for(let i = 0; i < Row; i++){
+        for(let j = 0; j < Column; j++){
+            Blocks.push(new Block(Block_sizeX*(j+1)+20*(j+1), Block_sizeY*(i+1)+20*(i+1)));
+        }
+    }
+    console.log(Blocks);
+    Paddle = new RectPaddle();
+    PlayerBall = new Ball();
+}
+
+function draw(){
+    background(0);
+    PlayerBall.move(Paddle.x, Paddle.y, Paddle.Paddle_sizeX, Paddle.Paddle_sizeY);
+    PlayerBall.display();
+
+    let count = 0;
+    for(let i = 0; i < Blocks.length; i++){
+        PlayerBall.move(Blocks[i].x, Blocks[i].y, Blocks[i].block_sizeX, Blocks[i].block_sizeY);
+        Blocks[i].hitCheck(PlayerBall.vecLocation.x, PlayerBall.vecLocation.y, PlayerBall.diameter);
+        Blocks[i].display();
+    }
+
+    if(mouseIsPressed){
+        let X = mouseX;
+        Paddle.move(X);
+    }
+    Paddle.display();
+}
+</script>
+</body>
+</html>
+-->
