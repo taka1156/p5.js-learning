@@ -1,5 +1,5 @@
 # p5.js-learning
-p5.jsフレームワークの学習ページ
+p5.jsフレームワークの学習ページ(https://taka1156.github.io/p5.js-learning)
 
 p5.jsでの動きをつけたりいろいろ試す予定
 
