@@ -30,13 +30,12 @@ let Balls = [];
 
 let  X,Y;
 X=Y= null;
-let Speed = 0;
+const Speed = 10;
 let touchBallid;
 class Ball{
     constructor(id){
-        this.speed = 4;
         this.vecLocation = createVector(random(width), random(height));
-        this.vecVelocity = createVector(this.speed, this.speed);
+        this.vecVelocity = createVector(Speed, Speed);
         this.diameter = 20;
         this.R = random(255);
         this.G = random(255);
@@ -56,10 +55,6 @@ class Ball{
                 }
             }
         }
-    }
-
-    SetSpeed(speed){
-        this.speed = speed;
     }
 
     move(){
@@ -91,23 +86,16 @@ function draw(){
     background(0);
     for(let i=0; i<Balls.length; i++){
         Balls[i].move();
-        Balls[i].SetSpeed(Speed);
         Balls[i].display();
     }
 
-    let time = second();
 
     if(mouseIsPressed){
-        //ボールが重なるのを防ぐ
-        X = mouseX + random(0,5);
-        Y = mouseY + random(0,5);
+        X = mouseX 
+        Y = mouseY
         touchBallid++;
         Balls.push(new Ball(touchBallid));
     }
-}
-
-function deviceShaken() {
-    Speed+=1;
 }
 </script>
 </body>
