@@ -33,14 +33,14 @@ let Result;//結果
 let count = 0;//壊した数
 let Score =0;//得点
 let Ballfall = false;//ボールが落ちたかどうか
-const BallSpeed = 4;
-const BallDiameter = 18;//ボールの直径
 let Block_sizeX = 90;//block1個当たりのｘサイズ
 let Block_sizeY = 20;//block1個当たりのyサイズ
-let Row = 0;//行
-let Column = 0;//列
 let marginX = 0;//隙間X
 let marginY = 0;//隙間Y
+const BallSpeed = 4;
+const BallDiameter = 18;//ボールの直径
+const Row = 8;//行
+const Column = 10;//列
 
 class Block{
     constructor(posX,posY){
@@ -142,12 +142,10 @@ class Message{
 
 function setup(){
     createCanvas(windowWidth-10, windowHeight-10);
-    Row = height/100;//行
-    Column = width/100;//列
-    Block_sizeX = height/9;//block1個当たりのｘ座標
-    Block_sizeY = width/55;//block1個当たりのy座標
-    marginX = height/40;
-    marginY = width/70;
+    Block_sizeX = Math.ceil(width/20);//block1個当たりのｘ座標
+    Block_sizeY = Math.ceil(height/50);//block1個当たりのy座標
+    marginX = Math.ceil(width/30);
+    marginY = Math.ceil(height/50);
 
     for(let i = 0; i < Row; i++){
         for(let j = 0; j < Column; j++){
