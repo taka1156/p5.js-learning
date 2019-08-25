@@ -37,8 +37,8 @@ const BallSpeed = 4;
 const BallDiameter = 18;//ボールの直径
 const Block_sizeX = 90;//block1個当たりのｘ座標
 const Block_sizeY = 20;//block1個当たりのy座標
-const Row = 8;//行
-const Column = 10;//列
+let Row = 0;//行
+let Column = 0;//列
 
 class Block{
     constructor(posX,posY){
@@ -140,6 +140,9 @@ class Message{
 
 function setup(){
     createCanvas(windowWidth-10, windowHeight-10);
+    leRow = height/100;//行
+    Column = width/100;//列
+
     for(let i = 0; i < Row; i++){
         for(let j = 0; j < Column; j++){
             Blocks.push(new Block(Block_sizeX*(j+1)+20*(j+1), Block_sizeY*(i+1)+20*(i+1)));
