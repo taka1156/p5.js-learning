@@ -29,11 +29,15 @@ body {
 let Blocks = [];//ブロック配列
 let Paddle;//パドルオブジェクト
 let PlayerBall;//ボールオブジェクト
-const BallSpeed = 5;
+let Result;//結果 
+let count = 0;//壊した数
+let Score =0;//得点
+let Ballfall = false;//ボールが落ちたかどうか
+const BallSpeed = 4;
 const BallDiameter = 18;//ボールの直径
 const Block_sizeX = 90;//block1個当たりのｘ座標
 const Block_sizeY = 20;//block1個当たりのy座標
-const Row = 10;//行
+const Row = 8;//行
 const Column = 10;//列
 
 class Block{
@@ -51,6 +55,7 @@ class Block{
         this.hit = collideRectCircle(this.x, this.y, this.block_sizeX, this.block_sizeY, posX, posY, diameter);
         if(this.hit === true){
             this.x = this.y = this.block_sizeX = this.block_sizeY = 0;
+            count++;
         }
     }
 
@@ -71,6 +76,7 @@ class Ball{
     }
 
     move(posX, posY, sizeX, sizeY){
+        if(count===Blocks.length　|| Ballfall === true) return;
         this.hit = collideRectCircle(posX, posY, sizeX, sizeY, this.vecLocation.x, this.vecLocation.y, this.diameter);
         if(this.hit === true){
             this.R=255;
@@ -82,9 +88,12 @@ class Ball{
         if(this.vecLocation.x < 0 || this.vecLocation.x > width){
             this.vecVelocity.x = this.vecVelocity.x * -1;
         }
-        if(this.hit || this.vecLocation.y < 0 || this.vecLocation.y > height){
+        if(this.hit || this.vecLocation.y < 0 ){
             this.vecVelocity.y = this.vecVelocity.y * -1;
             
+        }
+        if(this.vecLocation.y > height){
+            Ballfall = true;
         }
     }
 
@@ -115,6 +124,20 @@ class RectPaddle{
     }
 }
 
+class Message{
+    display(sentence,score){
+        textAlign(CENTER);
+        textSize(width/20);
+        fill('red');
+        text(sentence, width/2, height/2);
+
+        textAlign(CENTER);
+        textSize(width/50);
+        fill('red');
+        text('Score:' + score, width/2, height/2 + 30 );
+    }
+}
+
 function setup(){
     createCanvas(windowWidth-10, windowHeight-10);
     for(let i = 0; i < Row; i++){
@@ -122,9 +145,9 @@ function setup(){
             Blocks.push(new Block(Block_sizeX*(j+1)+20*(j+1), Block_sizeY*(i+1)+20*(i+1)));
         }
     }
-    console.log(Blocks);
     Paddle = new RectPaddle();
     PlayerBall = new Ball();
+    Result = new Message();
 }
 
 function draw(){
@@ -132,11 +155,20 @@ function draw(){
     PlayerBall.move(Paddle.x, Paddle.y, Paddle.Paddle_sizeX, Paddle.Paddle_sizeY);
     PlayerBall.display();
 
-    let count = 0;
     for(let i = 0; i < Blocks.length; i++){
+        if(count===Blocks.length　|| Ballfall === true)break;
         PlayerBall.move(Blocks[i].x, Blocks[i].y, Blocks[i].block_sizeX, Blocks[i].block_sizeY);
         Blocks[i].hitCheck(PlayerBall.vecLocation.x, PlayerBall.vecLocation.y, PlayerBall.diameter);
         Blocks[i].display();
+    }
+
+    Score = count * 100;
+
+    if(count === Blocks.length){
+        Result.display('Game Clear',Score);
+    }
+    if(Ballfall === true){
+        Result.display('Game Over' ,Score);
     }
 
     if(mouseIsPressed){
