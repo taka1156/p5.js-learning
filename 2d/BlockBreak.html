@@ -35,10 +35,12 @@ let Score =0;//得点
 let Ballfall = false;//ボールが落ちたかどうか
 const BallSpeed = 4;
 const BallDiameter = 18;//ボールの直径
-const Block_sizeX = 90;//block1個当たりのｘ座標
-const Block_sizeY = 20;//block1個当たりのy座標
+let Block_sizeX = 90;//block1個当たりのｘサイズ
+let Block_sizeY = 20;//block1個当たりのyサイズ
 let Row = 0;//行
 let Column = 0;//列
+let marginX = 0;//隙間X
+let marginY = 0;//隙間Y
 
 class Block{
     constructor(posX,posY){
@@ -141,11 +143,15 @@ class Message{
 function setup(){
     createCanvas(windowWidth-10, windowHeight-10);
     Row = height/100;//行
-    Column = width/120;//列
+    Column = width/100;//列
+    Block_sizeX = height/9;//block1個当たりのｘ座標
+    Block_sizeY = width/55;//block1個当たりのy座標
+    marginX = height/40;
+    marginY = width/70;
 
     for(let i = 0; i < Row; i++){
         for(let j = 0; j < Column; j++){
-            Blocks.push(new Block(Block_sizeX*(j+1)+10*(j+1), Block_sizeY*(i+1)+10*(i+1)));
+            Blocks.push(new Block(Block_sizeX*(j+1)+marginX*(j+1), Block_sizeY*(i+1)+marginY*(i+1)));
         }
     }
     Paddle = new RectPaddle();
