@@ -140,12 +140,12 @@ class Message{
 
 function setup(){
     createCanvas(windowWidth-10, windowHeight-10);
-    leRow = height/100;//行
+    Row = height/100;//行
     Column = width/100;//列
 
     for(let i = 0; i < Row; i++){
         for(let j = 0; j < Column; j++){
-            Blocks.push(new Block(Block_sizeX*(j+1)+20*(j+1), Block_sizeY*(i+1)+20*(i+1)));
+            Blocks.push(new Block(Block_sizeX*(j+1)+10*(j+1), Block_sizeY*(i+1)+10*(i+1)));
         }
     }
     Paddle = new RectPaddle();
