@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../css/layout.css">
+    <title>ローディングアイコンのようなもの</title>
+</head>
+<body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+
+<script>
+let arcList = [];
+const colorList = ['white', 'red', 'green', 'blue', 'yellow', 'purple', 'orange'];
+
+class Arc{
+    constructor(d, a, color){
+        this.arcDiameter = d;
+        this.rotate = a;
+        this.arcStroke = color;
+    }
+
+    rotateAdd(){
+        if(this.rotate < 360){
+            this.rotate += random(5,10);
+        }else {
+            this.rotate = 0;
+        }
+    }
+
+    display(){
+        push();
+        //描画を中心基準に指定
+        ellipseMode(CENTER);
+        //原点の移動
+        translate(width/2, height/2);
+        //回転
+        rotate(radians(this.rotate));
+        //塗りつぶし無効
+        noFill();
+        strokeWeight(5);
+        stroke(this.arcStroke);
+        arc(0, 0, this.arcDiameter, this.arcDiameter, HALF_PI + QUARTER_PI, TWO_PI);
+        pop();
+    }
+}
+
+function setup(){
+    createCanvas(600, 600);
+    for (let i = 0; i < colorList.length; i++){
+        arcList.push(new Arc(width/10+i*15, floor(random(0,360)), colorList[i]));
+    }
+    frameRate(30);
+}
+
+function draw(){
+    background(220);
+    for(let i = 0; i < colorList.length; i++){
+        //回転角度の加算
+        arcList[i].rotateAdd();
+        //表示
+        arcList[i].display();
+    }
+}
+</script>
+
+
+</body>
+</html>
