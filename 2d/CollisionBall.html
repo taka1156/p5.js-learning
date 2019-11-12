@@ -22,7 +22,7 @@ class Ball{
         this.vecLocation = createVector(random(width),random(height));//初期位置
         this.vecVelocity = createVector((width/1000)*1.6, (height/1000)*1.6);//速さ
         this.diameter = 59;//直径
-        this.id = id;//半径
+        this.id = id;//自分かどうかを判定するid(自分と衝突はあり得ない)
         this.R=this.G=this.B=255;//色
         this.hit = false;//衝突フラグ
         
