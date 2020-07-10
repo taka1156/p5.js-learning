@@ -1,28 +1,36 @@
-<!DOCTYPE html><html>
-<head>
-    <meta charset="UTF-8">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/layout.css" />
     <title>傾きで図形を回す</title>
-</head>
-<body>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
+    <script src="../js/permission.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+      let device;
 
-<script>
-let box_1
-const BoxSIZE = 100;
+      function setup() {
+        createCanvas(windowWidth, windowHeight, WEBGL);
+        device = DeviceVersionCheck();
+      }
 
-function setup() {
-    let canvas1 = createCanvas(windowWidth, windowHeight, WEBGL);
-}
-  
-function draw() {
-    background(200);
-    rotateX(radians(rotationX));
-    rotateY(radians(rotationY));
-    rotateZ(radians(rotationZ));
-    box(100,100,100);
-}
+      function draw() {
+        // ios13 or ipadOS かつ 傾きの取得が許可されている
+        if (device.version && !permissionGranted) {
+            return;
+        }
 
-</script>
+        background(200);
+        rotateX(radians(rotationX));
+        rotateY(radians(rotationY));
+        rotateZ(radians(rotationZ));
+        box(100, 100, 100);
+      }
+    </script>
+  </body>
+</html>
