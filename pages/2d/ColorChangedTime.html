@@ -1,0 +1,45 @@
+<!DOCTYPE html><html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>時間で色変え</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+</head>
+<body>
+
+
+
+<script>
+function setup(){
+  createCanvas(windowWidth, windowHeight);
+  rectMode(CENTER);
+}
+
+let rb = 0;
+let gb = 0;
+let bb = 0;
+function draw(){
+  let time = second();
+  let r =  Math.floor(time/10);
+  let g = Math.floor(time/15);
+  let b = Math.floor(time/25);
+  
+  if(rb<=255)rb += r;
+  else rb = Math.floor(rb%255);
+  if(gb<=255)gb += g;
+  else gb = Math.floor(gb%255);
+  if(bb<=255)bb += b;
+  else bb = Math.floor(bb%255);
+
+ let rb1 = rb;
+ let gb1 = gb;
+ let bb1 = bb;
+  
+  fill(rb1,gb1,bb1);
+  rect(0, 0, windowWidth*2, windowHeight*2); 
+}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>振ってボールを出す</title>
+    <!--p5.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
+    <script  src="../../js/permission.js"></script>
+  </head>
+  <body>
+    <script>
+      let device;
+      let Balls = [];
+
+      class Ball {
+        constructor() {
+          this.vecLocation = createVector(random(width), random(height));
+          this.vecVelocity = createVector(10, 10);
+          this.diameter = random(5, 10);
+          this.speed = 30;
+          this.R = random(255);
+          this.G = random(255);
+          this.B = random(255);
+        }
+
+        move() {
+          if (this.vecLocation.x < 0 || this.vecLocation.x > windowWidth - 10) {
+            this.vecVelocity.x = this.vecVelocity.x * -1;
+          }
+          if (
+            this.vecLocation.y < 0 ||
+            this.vecLocation.y > windowHeight - 10
+          ) {
+            this.vecVelocity.y = this.vecVelocity.y * -1;
+          }
+        }
+
+        display() {
+          this.vecLocation.add(this.vecVelocity);
+          fill(this.R, this.G, this.B);
+          ellipse(
+            this.vecLocation.x,
+            this.vecLocation.y,
+            this.diameter,
+            this.diameter
+          );
+        }
+      }
+
+      function setup() {
+        createCanvas(windowWidth - 10, windowHeight - 10);
+        device = DeviceVersionCheck();
+      }
+
+      function draw() {
+        // ios13 or ipadOS かつ 傾きの取得が許可されている
+        if (device.version && !permissionGranted) {
+          return;
+        }
+
+        background(0);
+        for (let i = 0; i < Balls.length; i++) {
+          Balls[i].move();
+          Balls[i].display();
+        }
+      }
+
+      function deviceShaken() {
+        Balls.push(new Ball());
+      }
+    </script>
+  </body>
+</html>
