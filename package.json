@@ -1,0 +1,15 @@
+{
+  "name": "p5-learn",
+  "version": "0.0.0",
+  "author": "taka <tomo05061@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "node buildHelper/index.js && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "fast-glob": "^3.2.11",
+    "vite": "^2.7.2"
+  }
+}

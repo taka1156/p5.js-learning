@@ -3,14 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="../css/layout.css" />
     <title>傾きで図形を回す</title>
-  </head>
-  <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
-    <script src="../js/permission.js"></script>
-
+    <script  src="../../js/permission.js"></script>
+  </head>
+  <body>
     <script>
       let device;
 
@@ -22,7 +20,7 @@
       function draw() {
         // ios13 or ipadOS かつ 傾きの取得が許可されている
         if (device.version && !permissionGranted) {
-            return;
+          return;
         }
 
         background(200);

@@ -26,27 +26,27 @@
       crossorigin="anonymous"
     ></script>
     <!--自作css-->
-    <link rel="stylesheet" href="../css/layout.css" />
+
     <title>加速度</title>
   </head>
   <body>
     <div class="mx-auto mt-5 pt-5">
       <div class="d-flex flex-column">
-        <p>accX:<span id="acX"></span></p>
-        <p>accY:<span id="acY"></span></p>
-        <p>accZ:<span id="acZ"></span></p>
+        <p>rotX:<span id="roX"></span></p>
+        <p>rotY:<span id="roY"></span></p>
+        <p>rotZ:<span id="roZ"></span></p>
       </div>
     </div>
 
     <!--p5.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
-    <script src="../js/permission.js"></script>
+        <script  src="../../js/permission.js"></script>
 
     <script>
       let device;
-      let accX, accY, accZ;
-      accX = accY = accZ = 0;
+      let rotX, rotY, rotZ;
+      rotX = rotY = rotZ = 0;
 
       function setup() {
         noCanvas();
@@ -56,16 +56,16 @@
       function draw() {
         // ios13 or ipadOS かつ 傾きの取得が許可されている
         if (device.version && !permissionGranted) {
-          return;
+            return;
         }
 
-        accX = accelerationX;
-        accY = accelerationY;
-        accZ = accelerationZ;
+        rotX = rotationX;
+        rotY = rotationY;
+        rotZ = rotationZ;
 
-        displayHTML('acX', accX);
-        displayHTML('acY', accY);
-        displayHTML('acZ', accZ);
+        displayHTML('roX', rotX);
+        displayHTML('roY', rotY);
+        displayHTML('roZ', rotZ);
       }
 
       function displayHTML(id, data) {
