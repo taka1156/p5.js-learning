@@ -1,70 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-
     <title>図形の組み合わせ</title>
-</head>
-<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        createCanvas(windowWidth, windowHeight);
+      }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+      function draw() {
+        //月食
 
-<script>
-function setup(){
-    createCanvas(windowWidth, windowHeight);
-}
+        //真ん中
+        ellipseMode(RADIUS);
+        fill(255);
+        ellipse(50, 50, 30, 30);
 
-function draw(){
-    //月食
-    
-    //真ん中
-    ellipseMode(RADIUS);
-    fill(255);
-    ellipse(50,50,30,30);
+        ellipseMode(CENTER);
+        fill(100);
+        ellipse(50, 50, 30, 30);
 
-    ellipseMode(CENTER);
-    fill(100); 
-    ellipse(50, 50, 30, 30);
+        translate(100, 0); //重なるのでずらす
 
-    
-    translate(100, 0);//重なるのでずらす
+        //角
+        ellipseMode(CORNER);
+        fill(255);
+        ellipse(25, 25, 50, 50);
 
-    //角
-    ellipseMode(CORNER);
-    fill(255);
-    ellipse(25, 25, 50, 50);
+        ellipseMode(CORNERS);
+        fill(100);
+        ellipse(25, 25, 50, 50);
 
-    ellipseMode(CORNERS);
-    fill(100);
-    ellipse(25, 25, 50, 50);
+        translate(100, 0); //重なるのでずらす
 
-    translate(100, 0);//重なるのでずらす
+        //四角版の月食
 
-    //四角版の月食
-    
-    //角
-    rectMode(CORNER);
-    fill(255); 
-    rect(25, 25, 50, 50); 
+        //角
+        rectMode(CORNER);
+        fill(255);
+        rect(25, 25, 50, 50);
 
-    rectMode(CORNERS); 
-    fill(100); 
-    rect(25, 25, 50, 50);
+        rectMode(CORNERS);
+        fill(100);
+        rect(25, 25, 50, 50);
 
-    translate(100, 0);//重なるのでずらす
+        translate(100, 0); //重なるのでずらす
 
-    //真ん中
-    rectMode(RADIUS);
-    fill(255);
-    rect(50, 50, 30, 30);
+        //真ん中
+        rectMode(RADIUS);
+        fill(255);
+        rect(50, 50, 30, 30);
 
-    rectMode(CENTER);
-    fill(100);
-    rect(50, 50, 30, 30);
-
-}
-
-</script>
-</body>
+        rectMode(CENTER);
+        fill(100);
+        rect(50, 50, 30, 30);
+      }
+    </script>
+  </body>
 </html>
