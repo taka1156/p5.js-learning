@@ -3,15 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="../css/layout.css" />
     <title>振ってボールを出す</title>
-  </head>
-  <body>
     <!--p5.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
-    <script src="../js/permission.js"></script>
-
+    <script  src="../../js/permission.js"></script>
+  </head>
+  <body>
     <script>
       let device;
       let Balls = [];
@@ -31,7 +29,10 @@
           if (this.vecLocation.x < 0 || this.vecLocation.x > windowWidth - 10) {
             this.vecVelocity.x = this.vecVelocity.x * -1;
           }
-          if (this.vecLocation.y < 0 ||this.vecLocation.y > windowHeight - 10) {
+          if (
+            this.vecLocation.y < 0 ||
+            this.vecLocation.y > windowHeight - 10
+          ) {
             this.vecVelocity.y = this.vecVelocity.y * -1;
           }
         }
@@ -39,7 +40,12 @@
         display() {
           this.vecLocation.add(this.vecVelocity);
           fill(this.R, this.G, this.B);
-          ellipse(this.vecLocation.x, this.vecLocation.y, this.diameter, this.diameter);
+          ellipse(
+            this.vecLocation.x,
+            this.vecLocation.y,
+            this.diameter,
+            this.diameter
+          );
         }
       }
 
