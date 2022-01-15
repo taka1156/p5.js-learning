@@ -1,83 +1,79 @@
-<!DOCTYPE html><html>
-<head>
-    <meta charset="UTF-8">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <title>図形の描画</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      function setup() {
+        createCanvas(windowWidth, windowHeight * 2);
+      }
 
-  <title>図形の描画</title>
-</head>
-<body>
+      function draw() {
+        fill(255);
+        //円形(扇型も含む)
+        //arc(中心座標X, 中心座標Y, 幅, 高さ, 開始位置,終了位置,モード)モードはなくてもいい
+        arc(50, 50, 100, 100, 0, PI, PIE);
+        arc(200, 50, 100, 100, 50, PI + QUARTER_PI, PIE);
+        arc(350, 50, 100, 100, 0, PI + QUARTER_PI, CHORD);
+        arc(500, 50, 100, 100, 0, TWO_PI);
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+        //楕円
+        //ellipse(中心座標X,中心座標Y,幅,高さ)高さはなくてもいい
+        ellipse(50, 170, 100, 100);
+        ellipse(200, 170, 100, 120);
+        ellipse(350, 170, 150, 100);
+        ellipse(500, 170, 120, 50);
+        ellipse(500, 170, 50, 120);
 
-<script>
-function setup(){
-    createCanvas(windowWidth, windowHeight*2);
-}
+        //直線
+        //line(始点のX, 始点のy,終点のX,終点のY);
+        line(0, 300, 100, 300);
+        line(200, 250, 200, 350);
+        line(410, 250, 290, 340);
+        line(580, 340, 430, 250);
 
+        //点
+        //point(x,y)
+        point(50, 510);
+        point(50, 511);
+        point(51, 510);
+        point(51, 511);
 
-function draw(){
-    fill(255);
-    //円形(扇型も含む)
-    //arc(中心座標X, 中心座標Y, 幅, 高さ, 開始位置,終了位置,モード)モードはなくてもいい
-    arc(50, 50, 100, 100, 0, PI,PIE);
-    arc(200, 50, 100, 100, 50, PI + QUARTER_PI, PIE);
-    arc(350, 50, 100, 100, 0, PI + QUARTER_PI, CHORD);
-    arc(500, 50, 100, 100, 0, TWO_PI);
+        point(200, 510);
+        point(200, 511);
+        point(201, 510);
+        point(201, 511);
 
-    //楕円
-    //ellipse(中心座標X,中心座標Y,幅,高さ)高さはなくてもいい
-    ellipse(50,170, 100, 100);
-    ellipse(200,170, 100, 120);
-    ellipse(350,170,150,100);
-    ellipse(500,170,120,50);
-    ellipse(500,170,50,120);
+        point(350, 510);
+        point(350, 511);
+        point(351, 510);
+        point(351, 511);
 
-    //直線
-    //line(始点のX, 始点のy,終点のX,終点のY);
-    line(0, 300, 100, 300);
-    line(200, 250, 200, 350);
-    line(410, 250, 290, 340);
-    line(580, 340, 430, 250);
+        point(500, 510);
+        point(500, 511);
+        point(501, 510);
+        point(501, 511);
 
-    //点
-    //point(x,y)
-    point(50, 510);
-    point(50, 511);
-    point(51, 510);
-    point(51, 511);
+        //長方形
+        //rect(x,y,幅,高さ,丸みの大きさ);
+        rect(20, 560, 100, 55);
+        rect(180, 560, 100, 55, 20);
+        rect(350, 560, 55, 55, 20);
+        rect(470, 560, 55, 55, 20);
 
-    point(200, 510);
-    point(200, 511);
-    point(201, 510);
-    point(201, 511);
+        //正方形
+        //square(x, y, 一辺の長さ, 丸み);
+        square(20, 680, 50);
+        square(180, 680, 50, 20);
 
-    point(350, 510);
-    point(350, 511);
-    point(351, 510);
-    point(351, 511);
-
-    point(500, 510);
-    point(500, 511);
-    point(501, 510);
-    point(501, 511);
-
-    //長方形
-    //rect(x,y,幅,高さ,丸みの大きさ);
-    rect(20, 560, 100, 55);
-    rect(180, 560, 100, 55, 20);
-    rect(350, 560, 55, 55, 20);
-    rect(470, 560, 55, 55, 20);
-
-    //正方形
-    //square(x, y, 一辺の長さ, 丸み);
-    square(20, 680, 50);
-    square(180, 680, 50, 20);
-
-    //三角形
-    //triangle(x1, y1, x2, y2, y3, y3);
-    triangle(400, 730, 370, 640, 340, 730);
-}
-</script>
-
-</body>
+        //三角形
+        //triangle(x1, y1, x2, y2, y3, y3);
+        triangle(400, 730, 370, 640, 340, 730);
+      }
+    </script>
+  </body>
 </html>
