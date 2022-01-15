@@ -1,24 +1,24 @@
 import { defineConfig } from 'vite';
 import path from 'path';
-const json = require('./path.config.json');
+import { generatePathConfig } from './buildHelper/index.js';
 
-export default defineConfig({
-  root: 'src',
-  base:
-    process.env.NODE_ENV === 'production' ? '/p5.js-learning/' : './',
-  build: {
-    rollupOptions: {
-      input: {
-        ...json
-      }
+export default defineConfig(async () => {
+  const pathList = await generatePathConfig();
+
+  return {
+    root: 'src',
+    build: {
+      rollupOptions: {
+        input: pathList,
+      },
+      outDir: '../dist',
+      polyfillModulePreload: false,
+      emptyOutDir: true,
     },
-    outDir: '../dist',
-    polyfillModulePreload: false,
-    emptyOutDir: true
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src')
-    }
-  }
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
+    },
+  };
 });

@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "node buildHelper/index.js && vite build",
+    "build": "vite build --base './'",
+    "deploy": "vite build --base '/p5.js-learning/'",
     "preview": "vite preview"
   },
   "devDependencies": {

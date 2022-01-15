@@ -1,38 +1,16 @@
 const fg = require('fast-glob');
-const fs = require('fs').promises;
 
-const generatePathConfig = async (
-  path = './src',
-  output = './path.config.json'
-) => {
+const generatePathConfig = async (root = './src') => {
   const fileList = {};
-  const paths = fg.sync(`${path}/**/*.html`);
-
-  const split = (dirName, before, after = '') =>
-    String(dirName).replace(before, after);
+  const paths = fg.sync(`${root}/**/*.html`);
 
   paths.forEach((path) => {
     const dirList = path.split('/');
-    const fileName = split(dirList[dirList.length - 1], '.html', '');
-    if (fileName === 'index' && dirList.length > 4) {
-      fileList[`${dirList[dirList.length - 2]}`] = path;
-    } else {
-      fileList[`${fileName}`] = path;
-    }
+    const fileName = dirList[dirList.length - 1].replace('.html', '');
+      fileList[`${fileName}`] = path.replace(root, '');
   });
 
-  for(let key in fileList){
-    fileList[key] = split(fileList[key], '/src');
-  };
-
-  await fs
-    .writeFile(output, JSON.stringify(fileList, null, '     '))
-    .then(() => {
-      console.log(fileList);
-    })
-    .catch((e) => {
-      throw e;
-    });
+  return fileList;
 };
 
-generatePathConfig();
+export { generatePathConfig };
