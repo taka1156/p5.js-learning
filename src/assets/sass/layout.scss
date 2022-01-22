@@ -1,0 +1,39 @@
+@import url(../../../node_modules/github-markdown-css/github-markdown-light.css);
+
+body {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  text-align: left;
+  margin: 0 auto;
+  width: 60vw;
+  padding: 10px !important;
+}
+
+details {
+  border: gray dashed 1px;
+  ul {
+    border-radius: 5px;
+    width: 100%;
+
+    li {
+      padding: 10px;
+    }
+  }
+
+  & summary {
+    padding: 10px;
+    &:hover {
+      background-color: lightgray;
+    }
+  }
+  &[open] summary {
+    background-color: lightgray;
+  }
+}
+
+.markdown-body {
+  margin: 0 auto;
+}
