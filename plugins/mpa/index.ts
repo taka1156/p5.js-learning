@@ -14,6 +14,10 @@ const generatePathConfig = async (root = './src') => {
     }
   });
 
+  for(const file in fileList) {
+    console.log(`${file}:${fileList[file]}`);
+  }
+
   return fileList;
 };
 
