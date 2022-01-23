@@ -5,9 +5,7 @@ const p5Init = (): HTMLElement => {
   return document.getElementById('cnv') || document.querySelectorAll('body')[0];
 };
 
-const p5w = (props: any, element: HTMLElement = p5Init()) => {
-  const el: HTMLElement = element;
-
+const p5w = (props: any, el: HTMLElement = p5Init()) => {
   new p5(props, el);
 };
 
