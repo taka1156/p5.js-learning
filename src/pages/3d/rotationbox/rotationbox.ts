@@ -35,6 +35,7 @@ const sk = (p: p5) => {
   // permission判定処理に移動
   p.deviceMoved = () => {
     btn.remove();
+    isDeviceMove = setPermission(true);
   };
 };
 
