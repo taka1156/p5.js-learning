@@ -15,8 +15,9 @@
       "noUnusedParameters": true,
       "noImplicitReturns": true,
       "paths": {
-          "@/*":["src/*"]
-      }
+          "@/*":["./src/*"]
+      },
+      "typeRoots": ["types"]
     },
     "include": ["src"]
   }

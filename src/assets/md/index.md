@@ -25,7 +25,7 @@ btnUrl: 'https://p5js.jp/reference/'
 - ::: spoiler 動きあり(3D)
   - [文字を回す](./pages/3d/font3d/index.html)
   - [球体を回す](./pages/3d/sphere/index.html)
-  - [傾きで立方体を回す(スマホ)](./pages/3d/RotationBox.html)
+  - [傾きで立方体を回す(スマホ)](./pages/3d/rotationbox/index.html)
   :::
 
 - ::: spoiler 操作系
