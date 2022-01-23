@@ -26,7 +26,7 @@ const i={heroText:"P5.js\u5B66\u7FD2\u30DA\u30FC\u30B8",leadText:"p5.js\u306E\u5
 <ul>
 <li><a href="./pages/3d/font3d/index.html">\u6587\u5B57\u3092\u56DE\u3059</a></li>
 <li><a href="./pages/3d/sphere/index.html">\u7403\u4F53\u3092\u56DE\u3059</a></li>
-<li><a href="./pages/3d/RotationBox.html">\u50BE\u304D\u3067\u7ACB\u65B9\u4F53\u3092\u56DE\u3059(\u30B9\u30DE\u30DB)</a></li>
+<li><a href="./pages/3d/rotationbox/index.html">\u50BE\u304D\u3067\u7ACB\u65B9\u4F53\u3092\u56DE\u3059(\u30B9\u30DE\u30DB)</a></li>
 </ul>
 </details>
 </li>
