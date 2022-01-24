@@ -3,15 +3,12 @@ import path from 'path';
 import { viteMdPlugin, pathConfig } from './plugins';
 import { visualizer } from 'rollup-plugin-visualizer';
 
-export default defineConfig(async () => {
-  const paths = await pathConfig;
-
-  return {
+export default defineConfig({
     root: 'src',
     base: process.env.NODE_ENV === 'production' ? '/p5.js-learning/' : './',
     build: {
       rollupOptions: {
-        input: paths,
+        input: pathConfig,
         plugins: [visualizer()],
       },
       outDir: '../dist',
@@ -24,5 +21,4 @@ export default defineConfig(async () => {
       },
     },
     plugins: [viteMdPlugin],
-  };
 });
