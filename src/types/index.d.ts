@@ -1,1 +1,1 @@
-type DevicePermission = { isIos13: boolean; permission: boolean };
+type DeviceStatus = { isIos13: boolean; permission: boolean };
