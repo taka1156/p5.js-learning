@@ -3,11 +3,9 @@ import markdownIt from 'markdown-it';
 import markdownItContainer from 'markdown-it-container';
 
 const containerMdExtend = (md) => ({
-
   validate: function(params) {
     return params.trim().match(/^spoiler\s+(.*)$/);
   },
-
   render: function (tokens, idx) {
     var m = tokens[idx].info.trim().match(/^spoiler\s+(.*)$/);
 

@@ -1,6 +1,6 @@
 import fg from 'fast-glob';
 
-const generatePathConfig = async (root = './src') => {
+const generatePathConfig = (root = './src') => {
   const fileList = {};
   const paths = fg.sync(`${root}/**/*.html`);
 
