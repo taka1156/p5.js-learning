@@ -23,10 +23,6 @@ const sk = (p: p5) => {
     p.rotateZ(p.radians(p.rotationZ));
     p.box(100, 100, 100);
   };
-
-  // すでに傾きにアクセスできる
-  // permission判定処理に移動
-  p.deviceMoved = () => devicePermission.deviceMoved();
 };
 
 p5w(sk);
