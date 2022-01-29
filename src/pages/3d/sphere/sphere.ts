@@ -11,16 +11,7 @@ type p5t = p5 & {
     d: number,
     e: number,
     f: number,
-    g: number,
-    h: number,
-    i: number,
-    j: number,
-    k: number,
-    l: number,
-    m: number,
-    n: number,
-    o: number,
-    p: number
+    ...args: number[]
   ): p5;
 };
 
@@ -30,16 +21,15 @@ const sk = (p: p5t) => {
     p.noFill();
   };
 
-  let i = 0,
-    rndStroke1 = 140,
-    rndStroke2 = 255;
+  let i = 0, rndStroke1 = 140, rndStroke2 = 255;
+
   p.draw = () => {
     p.background(200);
     p.rotateY(p.PI / 6);
 
-    var rad = p.millis() / 1000;
-    var ct = p.cos(rad);
-    var st = p.sin(rad);
+    let rad = p.millis() / 1000;
+    let ct = p.cos(rad);
+    let st = p.sin(rad);
 
     i++;
 
@@ -88,6 +78,7 @@ const sk = (p: p5t) => {
       0.0,
       1.0
     );
+
     p.stroke(rndStroke2);
     p.sphere(200);
   };

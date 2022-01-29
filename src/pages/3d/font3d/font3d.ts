@@ -16,8 +16,12 @@ const sk = (p: p5) => {
     p.textAlign(p.CENTER, p.CENTER);
   };
 
-  let r, g, b;
-  r = g = b = 255;
+  const c : Color = {
+    r: 255,
+    g: 255,
+    b: 255
+  }
+
   let i = 0;
 
   p.draw = () => {
@@ -29,12 +33,12 @@ const sk = (p: p5) => {
     i++;
 
     if (i % 30 === 0) {
-      r = Math.floor(p.random() * 255);
-      g = Math.floor(p.random() * 255);
-      b = Math.floor(p.random() * 255);
+      c.r = Math.floor(p.random() * 255);
+      c.g = Math.floor(p.random() * 255);
+      c.b = Math.floor(p.random() * 255);
     }
 
-    p.fill(r, g, b);
+    p.fill(c.r, c.g, c.b);
     p.text("Taka's P5.js Test Page", 0, 0);
   };
 };
