@@ -15,6 +15,8 @@ type ColorList =
   | 'purple'
   | 'orange';
 
+declare module 'p5/lib/p5.min.js'
+
 declare module '*.ttf' {
   const font: string;
   export default font;

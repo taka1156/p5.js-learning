@@ -14,7 +14,11 @@ class DevicePermission {
   private constructor(p:p5) {
     this.deviceStatus = { isIos13: this.deviceVersionCheck(), permission: false };
     this.btn = this.createBtn(p);
-    p.deviceMoved = () => this.deviceMoved();
+    if (this.judgeDeviceStatus()) {
+      p.deviceMoved = () => this.deviceMoved();
+    } else {
+      this.btn.remove();
+    }
   }
 
   public static getInstance = (p: p5) => {
