@@ -1,7 +1,7 @@
 import { Plugin, UserConfig } from 'vite';
 import fg from 'fast-glob';
 
-const generatePathConfig = (root = './src') => {
+const generatePathConfig = (root = process.cwd()) => {
   const fileList = {};
   const paths = fg.sync(`${root}/**/*.html`);
 
