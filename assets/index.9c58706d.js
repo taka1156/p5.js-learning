@@ -1,4 +1,4 @@
-const i={heroText:"P5.js\u5B66\u7FD2\u30DA\u30FC\u30B8",leadText:"p5.js\u306E\u5B9F\u9A13\u306A\u3069\u3092\u884C\u3046\u30DA\u30FC\u30B8",infoText:"\u73FE\u5728\u306Fvite\u74B0\u5883\u306B\u79FB\u884C\u4E2D\u3067\u3059\u3002",btnText:"p5.js\u306E\u30EA\u30D5\u30A1\u30EC\u30F3\u30B9",btnUrl:"https://p5js.jp/reference/"},s=`<ul>
+import"./modulepreload-polyfill.b7f2da20.js";const i={heroText:"P5.js\u5B66\u7FD2\u30DA\u30FC\u30B8",leadText:"p5.js\u306E\u5B9F\u9A13\u306A\u3069\u3092\u884C\u3046\u30DA\u30FC\u30B8",infoText:"\u73FE\u5728\u306Fvite\u74B0\u5883\u306B\u79FB\u884C\u4E2D\u3067\u3059\u3002",btnText:"p5.js\u306E\u30EA\u30D5\u30A1\u30EC\u30F3\u30B9",btnUrl:"https://p5js.jp/reference/"},s=`<ul>
 <li>
 <details><summary>\u56F3\u5F62\u306E\u63CF\u753B\u3001\u8272\u95A2\u9023</summary>
 <ul>
@@ -30,10 +30,10 @@ const i={heroText:"P5.js\u5B66\u7FD2\u30DA\u30FC\u30B8",leadText:"p5.js\u306E\u5
 </details>
 </li>
 </ul>
-`,r=()=>{const{heroText:e,leadText:l,infoText:a,btnText:n,btnUrl:t}=i;document.getElementById("hero").innerHTML=`
+`,r=()=>{const{heroText:l,leadText:e,infoText:a,btnText:n,btnUrl:t}=i;document.getElementById("hero").innerHTML=`
     <div class="jumbotron">
-    <h1 class="display-5">${e}</h1>
-    <p class="lead">${l}</p>
+    <h1 class="display-5">${l}</h1>
+    <p class="lead">${e}</p>
     <hr class="my-2">
     <p>${a}</p>
     <a class="btn btn-primary btn-lg" href="${t}" role="button">
