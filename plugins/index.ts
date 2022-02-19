@@ -1,7 +1,10 @@
-import { viteMdPlugin } from './markdownIt';
-import { pathConfig } from './mpa';
+import { PluginOption } from 'vite';
+import { viteMdPlugin } from './vite/markdownIt';
+import { viteMpaPlugin} from './vite/mpa';
+import { viteVisualizerPlugin } from './vite/visualizer';
 
-export {
+export const vitePlugins: PluginOption[] = [
     viteMdPlugin,
-    pathConfig
-}
+    viteMpaPlugin,
+    viteVisualizerPlugin
+]

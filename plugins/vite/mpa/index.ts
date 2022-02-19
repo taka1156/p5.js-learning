@@ -1,3 +1,4 @@
+import { Plugin, UserConfig } from 'vite';
 import fg from 'fast-glob';
 
 const generatePathConfig = (root = './src') => {
@@ -21,6 +22,16 @@ const generatePathConfig = (root = './src') => {
   return fileList;
 };
 
-const pathConfig = generatePathConfig();
+const resolveMpaConfig = (vitePlugin: UserConfig): UserConfig => ({
+  build: {
+    rollupOptions: {
+      input: generatePathConfig(vitePlugin.root)
+    }
+  }
+})
 
-export { pathConfig };
+export const viteMpaPlugin: Plugin = {
+  name: 'viteMpaPlugin',
+  config: (vitePlugin, _) => resolveMpaConfig(vitePlugin),
+  apply: 'build'
+}

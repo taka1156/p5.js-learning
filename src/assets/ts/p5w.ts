@@ -1,4 +1,4 @@
-import p5 from 'p5';
+import p5 from 'p5/lib/p5.min.js'
 import '@/assets/sass/p5.scss'; // 画面を完全に覆うためpadding, marginをリセット
 
 const p5Init = (): HTMLElement => {    
