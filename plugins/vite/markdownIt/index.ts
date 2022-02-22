@@ -1,3 +1,4 @@
+import { Plugin } from 'vite';
 import { Mode, plugin as mdPlugin } from 'vite-plugin-markdown';
 import markdownIt from 'markdown-it';
 import markdownItContainer from 'markdown-it-container';
@@ -20,7 +21,7 @@ const containerMdExtend = (md) => ({
   }
 });
 
-export const vitePluginMd = mdPlugin({
+export const vitePluginMd = (): Plugin => mdPlugin({
   mode: [Mode.HTML, Mode.TOC],
   markdownIt: markdownIt({ html: true })
     .use(markdownItContainer, 'spoiler', containerMdExtend(markdownIt()))

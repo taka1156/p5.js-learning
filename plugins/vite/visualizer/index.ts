@@ -19,10 +19,11 @@ const resolveVisualizerConfig = (mode): UserConfig => ({
   },
 });
 
-export const vitePluginVisualizer: Plugin = {
+// modeを使うため、vite専用プラグイン扱い
+export const vitePluginVisualizer = (): Plugin => ({
   name: 'vite-plugin-visualizer',
   config: (_, {mode}) => resolveVisualizerConfig(mode),
   apply: 'build',
-};
+});
 
 
