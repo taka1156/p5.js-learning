@@ -3,6 +3,7 @@ heroText: 'P5.js学習ページ'
 leadText: 'p5.jsの実験などを行うページ'
 infoText: '現在はvite環境に移行中です。'
 btnText: 'p5.jsのリファレンス'
+repoUrl: 'taka1156/p5.js-learning'  
 btnUrl: 'https://p5js.jp/reference/'
 ---
 

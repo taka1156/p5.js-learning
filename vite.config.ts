@@ -5,7 +5,7 @@ import { vitePlugins } from './plugins';
 export default defineConfig(({mode}) => {
   return {
     root: 'src',
-    base: mode !== 'serve' ? '/p5.js-learning/' : './',
+    base: mode !== 'development' ? '/p5.js-learning/' : './',
     build: {
       outDir: '../dist',
       emptyOutDir: true,

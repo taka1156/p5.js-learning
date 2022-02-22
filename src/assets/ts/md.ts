@@ -1,9 +1,13 @@
 import { attributes as attr, html } from '@/assets/md/index.md';
 
 const md2html = () => {
-  const { heroText, leadText, infoText, btnText, btnUrl } = attr;
+  const { heroText, leadText, infoText, btnText, repoUrl, btnUrl } = attr;
 
-  document.getElementById('hero').innerHTML = `
+  const getEl = (id: string): HTMLElement => {
+    return <HTMLElement>document.getElementById(id);
+  };
+
+  getEl('hero').innerHTML = `
     <div class="jumbotron">
     <h1 class="display-5">${heroText}</h1>
     <p class="lead">${leadText}</p>
@@ -12,11 +16,13 @@ const md2html = () => {
     <a class="btn btn-primary btn-lg" href="${btnUrl}" role="button">
     ${btnText}
     </a>
+    <div class="mt-3">
+    <a class="text-secondary" href="https://www.github.com/${repoUrl}" >Github</a>
+    </div>
     </div>
    `;
 
-  document.getElementById('md').innerHTML = html;
+  getEl('md').innerHTML = html;
 };
 
 md2html();
-
