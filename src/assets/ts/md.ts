@@ -17,7 +17,7 @@ const md2html = () => {
     ${btnText}
     </a>
     <div class="mt-3">
-    <a class="text-secondary" href="https://www.github.com/${repoUrl}" >Github</a>
+    <a class="text-secondary" href="https://www.github.com/${repoUrl}" >GitHub</a>
     </div>
     </div>
    `;

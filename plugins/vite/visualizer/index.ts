@@ -19,8 +19,8 @@ const resolveVisualizerConfig = (mode): UserConfig => ({
   },
 });
 
-export const viteVisualizerPlugin: Plugin = {
-  name: 'viteMpaPlugin',
+export const vitePluginVisualizer: Plugin = {
+  name: 'vite-plugin-visualizer',
   config: (_, {mode}) => resolveVisualizerConfig(mode),
   apply: 'build',
 };

@@ -15,8 +15,8 @@ const resolveMpaConfig = (vitePlugin: UserConfig): UserConfig => ({
   }
 })
 
-export const viteMpaPlugin: Plugin = {
-  name: 'viteMpaPlugin',
+export const vitePluginMpa: Plugin = {
+  name: 'vite-plugin-mpa',
   config: (vitePlugin, _) => resolveMpaConfig(vitePlugin),
   apply: 'build'
 }
