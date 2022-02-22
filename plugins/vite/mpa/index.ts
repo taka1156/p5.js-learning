@@ -1,25 +1,10 @@
 import { Plugin, UserConfig } from 'vite';
 import fg from 'fast-glob';
 
+// https://ja.vitejs.dev/config/#root
 const generatePathConfig = (root = process.cwd()) => {
-  const fileList = {};
   const paths = fg.sync(`${root}/**/*.html`);
-
-  paths.forEach((path) => {
-    const dirList = path.split('/');
-    const fileName = dirList[dirList.length - 1].replace('.html', '');
-    if (fileName === 'index' && dirList.length > 4) {
-      fileList[`${dirList[dirList.length - 2]}`] = path.replace(root, '');
-    } else {
-      fileList[`${fileName}`] = path.replace(root, '');
-    }
-  });
-
-  for(const file in fileList) {
-    console.log(`${file}:${fileList[file]}`);
-  }
-
-  return fileList;
+  return paths.map((path) => path.replace(root, ''));
 };
 
 const resolveMpaConfig = (vitePlugin: UserConfig): UserConfig => ({

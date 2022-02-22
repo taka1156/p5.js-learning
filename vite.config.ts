@@ -2,10 +2,10 @@ import { defineConfig } from 'vite';
 import path from 'path';
 import { vitePlugins } from './plugins';
 
-
-export default defineConfig({
+export default defineConfig(({mode}) => {
+  return {
     root: 'src',
-    base: process.env.NODE_ENV === 'production' ? '/p5.js-learning/' : './',
+    base: mode !== 'serve' ? '/p5.js-learning/' : './',
     build: {
       outDir: '../dist',
       emptyOutDir: true,
@@ -16,4 +16,5 @@ export default defineConfig({
       },
     },
     plugins: vitePlugins,
+  };
 });
