@@ -20,7 +20,7 @@ const containerMdExtend = (md) => ({
   }
 });
 
-export const viteMdPlugin = mdPlugin({
+export const vitePluginMd = mdPlugin({
   mode: [Mode.HTML, Mode.TOC],
   markdownIt: markdownIt({ html: true })
     .use(markdownItContainer, 'spoiler', containerMdExtend(markdownIt()))
