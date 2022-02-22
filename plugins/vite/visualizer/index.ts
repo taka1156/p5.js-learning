@@ -1,28 +1,26 @@
 import { Plugin, UserConfig } from 'vite';
 import { PluginVisualizerOptions, visualizer } from 'rollup-plugin-visualizer';
 
-const visualizerConfig: PluginVisualizerOptions = {
-    open: true,
-    filename: 'analyze/stats.html',
-    gzipSize: true,
-    brotliSize: true,
-  }
-
-const resolveVisualizerConfig = (mode): UserConfig => ({
+const resolveVisualizerConfig = (mode, modeName, userVisualizerConfig: PluginVisualizerOptions): UserConfig => ({
   build: {
     rollupOptions: {
       plugins: [
-        mode === 'analyze' &&
-          visualizer(visualizerConfig),
+        mode === modeName &&
+          visualizer(userVisualizerConfig),
       ],
     },
   },
 });
 
-export const vitePluginVisualizer: Plugin = {
+const defaultConfig: PluginVisualizerOptions = {
+  open: true,
+  filename: 'analyze/stats.html',
+  gzipSize: true,
+  brotliSize: true,
+}
+
+export const vitePluginVisualizer = (config: PluginVisualizerOptions = defaultConfig, modeName: string = 'analyze'): Plugin => ({
   name: 'vite-plugin-visualizer',
-  config: (_, {mode}) => resolveVisualizerConfig(mode),
+  config: (_, {mode}) => resolveVisualizerConfig(mode, modeName, config),
   apply: 'build',
-};
-
-
+});
