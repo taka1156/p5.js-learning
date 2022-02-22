@@ -28,5 +28,5 @@ p5.jsでの動きをつけたりいろいろ試す予定
 - http-serverを使うときは以下の引数でbuild実行
   
   ```shell
-  yarn build --basse=./
+  yarn build --base="../"
   ```
