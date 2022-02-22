@@ -40,7 +40,7 @@ import"./modulepreload-polyfill.b7f2da20.js";const h={heroText:"P5.js\u5B66\u7FD
     ${n}
     </a>
     <div class="mt-3">
-    <a class="text-secondary" href="https://www.github.com/${i}" >Github</a>
+    <a class="text-secondary" href="https://www.github.com/${i}" >GitHub</a>
     </div>
     </div>
    `,l("md").innerHTML=d};o();
