@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill.b7f2da20.js";const h={heroText:"P5.js\u5B66\u7FD2\u30DA\u30FC\u30B8",leadText:"p5.js\u306E\u5B9F\u9A13\u306A\u3069\u3092\u884C\u3046\u30DA\u30FC\u30B8",infoText:"\u73FE\u5728\u306Fvite\u74B0\u5883\u306B\u79FB\u884C\u4E2D\u3067\u3059\u3002",btnText:"p5.js\u306E\u30EA\u30D5\u30A1\u30EC\u30F3\u30B9",repoUrl:"taka1156/p5.js-learning",btnUrl:"https://p5js.jp/reference/"},d=`<ul>
+import"./modulepreload-polyfill.b7f2da20.js";const l={heroText:"P5.js\u5B66\u7FD2\u30DA\u30FC\u30B8",leadText:"p5.js\u306E\u5B9F\u9A13\u306A\u3069\u3092\u884C\u3046\u30DA\u30FC\u30B8",infoText:"\u73FE\u5728\u306Fvite\u74B0\u5883\u306B\u79FB\u884C\u4E2D\u3067\u3059\u3002",btnText:"p5.js\u306E\u30EA\u30D5\u30A1\u30EC\u30F3\u30B9",repoUrl:"taka1156/p5.js-learning",btnUrl:"https://p5js.jp/reference/"},m=`<ul>
 <li>
 <details><summary>\u56F3\u5F62\u306E\u63CF\u753B\u3001\u8272\u95A2\u9023</summary>
 <ul>
@@ -30,17 +30,17 @@ import"./modulepreload-polyfill.b7f2da20.js";const h={heroText:"P5.js\u5B66\u7FD
 </details>
 </li>
 </ul>
-`,o=()=>{const{heroText:e,leadText:a,infoText:t,btnText:n,repoUrl:i,btnUrl:s}=h,l=r=>document.getElementById(r);l("hero").innerHTML=`
+`,b=()=>{const{heroText:d,leadText:n,infoText:a,btnText:r,repoUrl:e,btnUrl:t}=l,o=i=>document.getElementById(i);o("hero").innerHTML=`
     <div class="jumbotron">
-    <h1 class="display-5">${e}</h1>
-    <p class="lead">${a}</p>
+    <h1 class="display-5">${d}</h1>
+    <p class="lead">${n}</p>
     <hr class="my-2">
-    <p>${t}</p>
-    <a class="btn btn-primary btn-lg" href="${s}" role="button">
-    ${n}
+    <p>${a}</p>
+    <a class="btn btn-primary btn-lg" href="${t}" role="button">
+    ${r}
     </a>
     <div class="mt-3">
-    <a class="text-secondary" href="https://www.github.com/${i}" >GitHub</a>
+    <a class="text-secondary" href="https://www.github.com/${e}" >GitHub</a>
     </div>
     </div>
-   `,l("md").innerHTML=d};o();
+   `,o("md").innerHTML=m};b();
