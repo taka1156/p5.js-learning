@@ -1,4 +1,5 @@
 import type p5 from 'p5';
+import type { DeviceStatus } from './types';
 
 declare let DeviceOrientationEvent: {
   prototype: DeviceOrientationEvent;
