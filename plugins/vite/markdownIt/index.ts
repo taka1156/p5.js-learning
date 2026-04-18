@@ -3,9 +3,10 @@ import markdownItContainer from 'markdown-it-container';
 import type { Plugin } from 'vite';
 import { Mode, plugin as mdPlugin } from 'vite-plugin-markdown';
 
-const containerMdExtend = (md) => ({
-  validate: (params) => params.trim().match(/^spoiler\s+(.*)$/),
-  render: (tokens, idx) => {
+const containerMdExtend = (md: markdownIt) => ({
+  validate: (params: string) => params.trim().match(/^spoiler\s+(.*)$/),
+  // biome-ignore lint/suspicious/noExplicitAny: markdown-itの型定義が不十分なため
+  render: (tokens: any[], idx: number) => {
     const m = tokens[idx].info.trim().match(/^spoiler\s+(.*)$/);
     if (tokens[idx].nesting === 1) {
       return `<details><summary>${md.utils.escapeHtml(m[1])}</summary>\n`;
