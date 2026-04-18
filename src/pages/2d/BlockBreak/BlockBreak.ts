@@ -13,6 +13,11 @@ const sk = (p: p5) => {
   let paddle: Paddle;
   let playerBall: Ball;
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const isAuto = ['true', '1'].includes(
+    (urlParams.get('auto') || '').toLowerCase(),
+  );
+
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight);
     paddle = new Paddle(p);
@@ -94,9 +99,10 @@ const sk = (p: p5) => {
       gs.setFinished();
     }
 
-    if (p.mouseIsPressed) {
-      const X = p.mouseX;
-      paddle.move(X);
+    if (isAuto) {
+      paddle.move(playerBall.vecLocation.x - paddle.paddleSizeX / 2);
+    } else if (p.mouseIsPressed) {
+      paddle.move(p.mouseX);
     }
     paddle.display();
   };
