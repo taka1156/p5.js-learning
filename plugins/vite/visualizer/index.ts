@@ -1,16 +1,17 @@
 import { Plugin, UserConfig } from 'vite';
-import { PluginVisualizerOptions, visualizer } from 'rollup-plugin-visualizer';
+import type { PluginVisualizerOptions } from 'rollup-plugin-visualizer';
 
-const resolveVisualizerConfig = (mode, modeName, userVisualizerConfig: PluginVisualizerOptions): UserConfig => ({
-  build: {
-    rollupOptions: {
-      plugins: [
-        mode === modeName &&
-          visualizer(userVisualizerConfig),
-      ],
+const resolveVisualizerConfig = async (mode: string, modeName: string, userVisualizerConfig: PluginVisualizerOptions): Promise<UserConfig> => {
+  if (mode !== modeName) return {};
+  const { visualizer } = await import('rollup-plugin-visualizer');
+  return {
+    build: {
+      rollupOptions: {
+        plugins: [visualizer(userVisualizerConfig)],
+      },
     },
-  },
-});
+  };
+};
 
 const defaultConfig: PluginVisualizerOptions = {
   open: true,

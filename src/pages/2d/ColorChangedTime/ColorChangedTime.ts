@@ -1,5 +1,5 @@
 import type p5 from 'p5';
-import { p5w } from '@/assets/ts/p5w';
+ 
 
 const sk = (p: p5) => {
   p.setup = () => {

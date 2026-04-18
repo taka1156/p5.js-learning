@@ -6,14 +6,39 @@
   "postCreateCommand": "yarn install",
   "customizations": {
     "vscode": {
-      "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
-      },
       "extensions": [
         "GitHub.copilot",
         "GitHub.copilot-chat",
         "biomejs.biome"
-      ]
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.cwd": "${containerWorkspaceFolder}",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "biomejs.biome",
+        "[typescript]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[typescriptreact]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "editor.codeActionsOnSave": {
+          "quickfix.biome": "explicit",
+          "source.organizeImports.biome": "explicit",
+          "source.removeUnusedImports": "never",
+          "source.sortImports": "never",
+          "source.fixAll.biome": "explicit",
+          "biome.enableProjectDiagnostics": "always"
+        },
+        "files.insertFinalNewline": true,
+        "errorLens.enabledDiagnosticLevels": ["error", "warning"]
+      }
     }
   }
 }
