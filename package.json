@@ -4,16 +4,18 @@
   "author": "taka <tomo05061@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "lint": "biome check .",
+    "lint:fix": "biome check . --write",
     "dev": "vite",
     "build": "vite build",
     "analyze": "vite build --mode analyze",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.12",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^25.6.0",
     "@types/p5": "^1.4.0",
-    "biome": "^0.3.3",
     "fast-glob": "^3.3.3",
     "markdown-it": "^14.1.1",
     "markdown-it-container": "^4.0.0",

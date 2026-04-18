@@ -1,6 +1,7 @@
 import type p5 from 'p5';
-import { DevicePermission } from '@/assets/ts/permission';
 import { p5w } from '@/assets/ts/p5w';
+import { DevicePermission } from '@/assets/ts/permission';
+import type { Color } from '@/assets/ts/types';
 
 const sk = (p: p5) => {
   const devicePermission = DevicePermission.getInstance(p);
@@ -29,9 +30,15 @@ const sk = (p: p5) => {
     c.g += 2;
     c.b += 3;
 
-    if (c.r > 255) c.r = 0;
-    if (c.g > 255) c.g = 0;
-    if (c.b > 255) c.b = 0;
+    if (c.r > 255) {
+      c.r = 0;
+    }
+    if (c.g > 255) {
+      c.g = 0;
+    }
+    if (c.b > 255) {
+      c.b = 0;
+    }
   };
 };
 

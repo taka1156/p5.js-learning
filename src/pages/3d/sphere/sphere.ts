@@ -21,15 +21,17 @@ const sk = (p: p5t) => {
     p.noFill();
   };
 
-  let i = 0, rndStroke1 = 140, rndStroke2 = 255;
+  let i = 0,
+    rndStroke1 = 140,
+    rndStroke2 = 255;
 
   p.draw = () => {
     p.background(200);
     p.rotateY(p.PI / 6);
 
-    let rad = p.millis() / 1000;
-    let ct = p.cos(rad);
-    let st = p.sin(rad);
+    const rad = p.millis() / 1000;
+    const ct = p.cos(rad);
+    const st = p.sin(rad);
 
     i++;
 
@@ -54,7 +56,7 @@ const sk = (p: p5t) => {
       0.0,
       0.0,
       0.0,
-      1.0
+      1.0,
     );
 
     p.stroke(rndStroke1);
@@ -76,7 +78,7 @@ const sk = (p: p5t) => {
       0.0,
       0.0,
       0.0,
-      1.0
+      1.0,
     );
 
     p.stroke(rndStroke2);

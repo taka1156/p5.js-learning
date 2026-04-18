@@ -2,7 +2,10 @@ import type p5 from 'p5';
 
 declare let DeviceOrientationEvent: {
   prototype: DeviceOrientationEvent;
-  new ( type: string, eventInitDict?: DeviceOrientationEvent ): DeviceOrientationEvent;
+  new (
+    type: string,
+    eventInitDict?: DeviceOrientationEvent,
+  ): DeviceOrientationEvent;
   requestPermission?: () => Promise<PermissionState>;
 };
 
@@ -11,8 +14,11 @@ class DevicePermission {
   btn: p5.Element;
   private static _instance: DevicePermission;
 
-  private constructor(p:p5) {
-    this.deviceStatus = { isIos13: this.deviceVersionCheck(), permission: false };
+  private constructor(p: p5) {
+    this.deviceStatus = {
+      isIos13: this.deviceVersionCheck(),
+      permission: false,
+    };
     this.btn = this.createBtn(p);
     if (this.judgeDeviceStatus()) {
       p.deviceMoved = () => this.deviceMoved();
@@ -41,12 +47,14 @@ class DevicePermission {
     let permissionGranted = false;
 
     if (
-      typeof DeviceOrientationEvent !== undefined &&
+      typeof DeviceOrientationEvent !== 'undefined' &&
       typeof DeviceOrientationEvent.requestPermission === 'function'
     ) {
       DeviceOrientationEvent.requestPermission()
         .then((response) => {
-          if (response === 'granted') permissionGranted = true;
+          if (response === 'granted') {
+            permissionGranted = true;
+          }
         })
         .catch((e) => console.log(e));
     }
@@ -56,7 +64,7 @@ class DevicePermission {
 
   private setPermission = (
     permission: boolean,
-    isIos13: boolean = this.deviceVersionCheck()
+    isIos13: boolean = this.deviceVersionCheck(),
   ): void => {
     this.deviceStatus = { isIos13: isIos13, permission: permission };
   };
@@ -66,13 +74,13 @@ class DevicePermission {
     return isIos13 && !permission;
   };
 
-  private createBtn = (p:p5) => {
+  private createBtn = (p: p5) => {
     const btn = p.createButton('click');
     btn.style('font-size', '20px');
     btn.center();
     btn.mousePressed(this.requestAccess);
     return btn;
-  }
+  };
 
   // すでに傾きが取れる時ボタン解除
   private deviceMoved = (): void => {

@@ -1,5 +1,5 @@
-import { Plugin, UserConfig } from 'vite';
 import fg from 'fast-glob';
+import type { Plugin, UserConfig } from 'vite';
 
 // https://ja.vitejs.dev/config/#root
 const generatePathConfig = (root = process.cwd(), ext: string) => {
@@ -10,13 +10,13 @@ const generatePathConfig = (root = process.cwd(), ext: string) => {
 const resolveMpaConfig = (vitePlugin: UserConfig, ext: string): UserConfig => ({
   build: {
     rollupOptions: {
-      input: generatePathConfig(vitePlugin.root, ext)
-    }
-  }
-})
+      input: generatePathConfig(vitePlugin.root, ext),
+    },
+  },
+});
 
-export const vitePluginMpa = (extention: string = 'html'): Plugin  => ({
+export const vitePluginMpa = (extention: string = 'html'): Plugin => ({
   name: 'vite-plugin-mpa',
   config: (vitePlugin, _) => resolveMpaConfig(vitePlugin, extention),
-  apply: 'build'
-})
+  apply: 'build',
+});

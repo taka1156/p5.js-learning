@@ -6,11 +6,7 @@
   "postCreateCommand": "yarn install",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "GitHub.copilot",
-        "GitHub.copilot-chat",
-        "biomejs.biome"
-      ],
+      "extensions": ["GitHub.copilot", "GitHub.copilot-chat", "biomejs.biome"],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
         "terminal.integrated.cwd": "${containerWorkspaceFolder}",
