@@ -12,6 +12,7 @@ export class Block {
   //ブロックが壊れるまでのヒット数
   hitMax: number;
   color: string;
+  destroyed = false;
 
   //スコアに加算されないブロックの種類
   nonScoreBlocks: BLOCK_TYPE[] = [BLOCK_TYPE.unbreakable, BLOCK_TYPE.blank];
@@ -35,9 +36,15 @@ export class Block {
     this.hit = false;
   }
 
-  hitCheck(posX: number, posY: number, diameter: number, gs: GameSystem) {
-    if (this.hitMax === -1) {
-      return;
+  hitCheck(
+    posX: number,
+    posY: number,
+    diameter: number,
+    gs: GameSystem,
+  ): boolean {
+    this.hit = false;
+    if (this.destroyed || this.hitMax === -1) {
+      return false;
     }
 
     this.hit = this.p.collideRectCircle(
@@ -50,26 +57,28 @@ export class Block {
       diameter,
     );
 
-    if (this.hit === true) {
+    if (this.hit) {
       this.hitMax--; //衝突回数を減らす
 
       // ヒット数が0になったらブロックを消す
       if (this.hitMax === 0) {
-        this.x = this.y = this.blockSizeX = this.blockSizeY = 0;
-        this.hitMax = -1;
+        this.destroyed = true;
+        this.hit = false;
         gs.increment();
       } else {
-        const { blockType } = createBlock(this.hitMax);
-        if (this.nonScoreBlocks.includes(blockType)) {
-          return;
+        const { color, blockType } = createBlock(this.hitMax);
+        this.color = color;
+        if (!this.nonScoreBlocks.includes(blockType)) {
+          this.hit = false;
         }
-        this.hit = false; //hitのフラグを初期化
       }
+      return true;
     }
+    return false;
   }
 
   display() {
-    if (this.hit === true) {
+    if (this.destroyed) {
       return;
     }
 

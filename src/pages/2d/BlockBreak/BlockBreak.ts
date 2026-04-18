@@ -5,7 +5,7 @@ import { Ball } from './model/Ball';
 import { Block } from './model/Block';
 import { GameSystem } from './model/GameSystem';
 import { Paddle } from './model/Paddle';
-import { createBlock } from './model/utls';
+import { BLOCK_TYPE, createBlock } from './model/utls';
 
 const sk = (p: p5) => {
   const gs = new GameSystem(p);
@@ -28,7 +28,7 @@ const sk = (p: p5) => {
         const hitCount = gs.BLOCK_DATA[i][j];
         const { color, blockType } = createBlock(hitCount);
 
-        if (blockType === 'blank') {
+        if (blockType === BLOCK_TYPE.blank) {
           continue;
         }
 
@@ -51,7 +51,6 @@ const sk = (p: p5) => {
   p.draw = () => {
     p.background(0);
     playerBall.move(
-      blocks,
       paddle.x,
       paddle.y,
       paddle.paddleSizeX,
@@ -59,29 +58,31 @@ const sk = (p: p5) => {
       gs.count,
       gs.getFinished(),
     );
-    playerBall.display();
 
-    for (let i = 0; i < blocks.length; i++) {
+    let anyBlockHit = false;
+    for (let i = blocks.length - 1; i >= 0; i--) {
       if (gs.checkGameClear() || playerBall.getFalledBall()) {
         break;
       }
-      playerBall.move(
-        blocks,
-        blocks[i].x,
-        blocks[i].y,
-        blocks[i].blockSizeX,
-        blocks[i].blockSizeY,
-        gs.count,
-        gs.getFinished(),
-      );
-      blocks[i].hitCheck(
+      const hit = blocks[i].hitCheck(
         playerBall.vecLocation.x,
         playerBall.vecLocation.y,
         playerBall.diameter,
         gs,
       );
+      if (hit) {
+        anyBlockHit = true;
+      }
+      if (blocks[i].destroyed) {
+        blocks.splice(i, 1);
+        continue;
+      }
       blocks[i].display();
     }
+    if (anyBlockHit) {
+      playerBall.reflectY();
+    }
+    playerBall.display();
 
     if (gs.checkGameClear()) {
       gs.textDisplay('Game Clear');
