@@ -1,0 +1,19 @@
+{
+  "name": "p5.js-learning",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "yarn install",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "biomejs.biome"
+      ]
+    }
+  }
+}
