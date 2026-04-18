@@ -1,5 +1,4 @@
 import type p5 from 'p5';
-import type { Block } from './Block';
 
 const BALL_DIAMETER = 20; //ボールの直径
 const BALL_SPEED = 5; //ボールの速さ
@@ -24,28 +23,18 @@ export class Ball {
     return this.falledBall;
   }
 
+  // パドル・壁との当たり判定と反射
   move(
-    Blocks: Block[],
-    posX: number,
-    posY: number,
-    sizeX: number,
-    sizeY: number,
+    paddleX: number,
+    paddleY: number,
+    paddleSizeX: number,
+    paddleSizeY: number,
     count: number,
     finished: boolean,
   ) {
-    if (count === Blocks.length || this.falledBall) {
+    if (this.falledBall) {
       return;
     }
-
-    this.hit = this.p.collideRectCircle(
-      posX,
-      posY,
-      sizeX,
-      sizeY,
-      this.vecLocation.x,
-      this.vecLocation.y,
-      this.diameter,
-    );
 
     //点が3000~5000の間ボールサイズ二倍
     if (count > 30 && count < 50) {
@@ -54,26 +43,41 @@ export class Ball {
       this.diameter = BALL_DIAMETER;
     }
 
+    const hitPaddle = this.p.collideRectCircle(
+      paddleX,
+      paddleY,
+      paddleSizeX,
+      paddleSizeY,
+      this.vecLocation.x,
+      this.vecLocation.y,
+      this.diameter,
+    );
+
     // ゲームクリアの時は、全方向をはねるようにする。
     if (finished) {
       if (this.vecLocation.x < 0 || this.vecLocation.x > this.p.width) {
-        this.vecVelocity.x = this.vecVelocity.x * -1;
+        this.vecVelocity.x *= -1;
       }
       if (this.vecLocation.y < 0 || this.vecLocation.y > this.p.height) {
-        this.vecVelocity.y = this.vecVelocity.y * -1;
+        this.vecVelocity.y *= -1;
       }
       return;
     }
 
     if (this.vecLocation.x < 0 || this.vecLocation.x > this.p.width) {
-      this.vecVelocity.x = this.vecVelocity.x * -1;
+      this.vecVelocity.x *= -1;
     }
-    if (this.hit || this.vecLocation.y < 0) {
-      this.vecVelocity.y = this.vecVelocity.y * -1;
+    if (hitPaddle || this.vecLocation.y < 0) {
+      this.vecVelocity.y *= -1;
     }
     if (this.vecLocation.y > this.p.height) {
       this.falledBall = true;
     }
+  }
+
+  // ブロックヒット時のY方向反射
+  reflectY() {
+    this.vecVelocity.y *= -1;
   }
 
   display() {

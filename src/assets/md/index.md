@@ -14,12 +14,24 @@ btnUrl: 'https://p5js.jp/reference/'
   :::            
 
 - ::: spoiler 動きあり(2D)
-  - [ブロック崩し(PC)](./pages/2d/BlockBreak/index.html)
-  - [時間で色変え](./pages/2d/ColorChangedTime/index.html)
-  - [振って色変え(スマホ)](./pages/2d/ShakeChangedColor/index.html)
-  - [振ってボールを出す(スマホ)](./pages/2d/ShakeBalls/index.html)
-  - [ボールで当たり判定](./pages/2d/CollisionBall/index.html)
-  - [ローディングアイコンのようなもの](./pages/2d/RotateArc/index.html)
+    - [時間で色変え](./pages/2d/ColorChangedTime/index.html)
+    - [振って色変え(スマホ)](./pages/2d/ShakeChangedColor/index.html)
+    - [振ってボールを出す(スマホ)](./pages/2d/ShakeBalls/index.html)
+    - [ボールで当たり判定](./pages/2d/CollisionBall/index.html)
+    - [ローディングアイコンのようなもの](./pages/2d/RotateArc/index.html)
+  :::
+
+- ::: spoiler ブロック崩し
+    - [Level1](./pages/2d/BlockBreak/index.html?stage=1)
+    - [Level1 - auto](./pages/2d/BlockBreak/index.html?stage=1&auto=true)
+    - [Level2](./pages/2d/BlockBreak/index.html?stage=2)
+    - [Level2 - auto](./pages/2d/BlockBreak/index.html?stage=2&auto=true)
+    - [Level3](./pages/2d/BlockBreak/index.html?stage=3)
+    - [Level3 - auto](./pages/2d/BlockBreak/index.html?stage=3&auto=true)
+    - [Level4](./pages/2d/BlockBreak/index.html?stage=4)
+    - [Level4 - auto](./pages/2d/BlockBreak/index.html?stage=4&auto=true)
+    - [Level5](./pages/2d/BlockBreak/index.html?stage=5)
+    - [Level5 - auto](./pages/2d/BlockBreak/index.html?stage=5&auto=true)
   :::
 
 - ::: spoiler 動きあり(3D)
