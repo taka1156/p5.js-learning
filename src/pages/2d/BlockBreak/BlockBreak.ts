@@ -25,7 +25,7 @@ const sk = (p: p5) => {
 
     for (let i = 0; i < gs.frameRow; i++) {
       for (let j = 0; j < gs.frameColumn; j++) {
-        const hitCount = gs.BLOCK_DATA[i][j];
+        const hitCount = gs.MAIN_BLOCK_DATA[i][j];
         const { color, blockType } = createBlock(hitCount);
 
         if (blockType === BLOCK_TYPE.blank) {

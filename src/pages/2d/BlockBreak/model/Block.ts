@@ -43,7 +43,7 @@ export class Block {
     gs: GameSystem,
   ): boolean {
     this.hit = false;
-    if (this.destroyed || this.hitMax === -1) {
+    if (this.destroyed) {
       return false;
     }
 
@@ -56,6 +56,11 @@ export class Block {
       posY,
       diameter,
     );
+
+    // 破壊不能ブロックは反射のみ、耐久を減らさない
+    if (this.hitMax === -1) {
+      return this.hit;
+    }
 
     if (this.hit) {
       this.hitMax--; //衝突回数を減らす
