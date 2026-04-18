@@ -1,7 +1,6 @@
 import type p5 from 'p5';
-import { DevicePermission } from '@/assets/ts/permission';
 import { p5w } from '@/assets/ts/p5w';
-
+import { DevicePermission } from '@/assets/ts/permission';
 
 const sk = (p: p5) => {
   const devicePermission = DevicePermission.getInstance(p);

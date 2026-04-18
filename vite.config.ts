@@ -1,8 +1,8 @@
+import path from 'node:path';
 import { defineConfig } from 'vite';
-import path from 'path';
 import { vitePlugins } from './plugins';
 
-export default defineConfig(({mode}) => {
+export default defineConfig(({ mode }) => {
   return {
     root: 'src',
     base: mode !== 'development' ? '/p5.js-learning/' : './',

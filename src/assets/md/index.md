@@ -14,11 +14,11 @@ btnUrl: 'https://p5js.jp/reference/'
   :::            
 
 - ::: spoiler 動きあり(2D)
-  - [ブロック崩し(PC)](./pages/2d/BlockBreak.html)
+  - [ブロック崩し(PC)](./pages/2d/BlockBreak/index.html)
   - [時間で色変え](./pages/2d/ColorChangedTime/index.html)
   - [振って色変え(スマホ)](./pages/2d/ShakeChangedColor/index.html)
   - [振ってボールを出す(スマホ)](./pages/2d/ShakeBalls/index.html)
-  - [ボールで当たり判定](./pages/2d/CollisionBall.html)
+  - [ボールで当たり判定](./pages/2d/CollisionBall/index.html)
   - [ローディングアイコンのようなもの](./pages/2d/RotateArc/index.html)
   :::
 
