@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "github-markdown-css": "^5.9.0",
-    "p5": "1.11.13",
+    "p5": "2.4.0",
     "p5.collide2d": "^0.7.3"
   }
 }
