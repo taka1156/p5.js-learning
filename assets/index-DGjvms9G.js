@@ -1,4 +1,4 @@
-import"./modulepreload-polyfill-3xzlJT5O.js";var e={heroText:`P5.js学習ページ`,leadText:`p5.jsの実験などを行うページ`,infoText:`現在はvite環境に移行中です。`,btnText:`p5.jsのリファレンス`,repoUrl:`taka1156/p5.js-learning`,btnUrl:`https://p5js.jp/reference/`},t=`<ul>
+import"./modulepreload-polyfill-P2Xu9kJm.js";var e={heroText:`P5.js学習ページ`,leadText:`p5.jsの実験などを行うページ`,infoText:`現在はvite環境に移行中です。`,btnText:`p5.jsのリファレンス`,repoUrl:`taka1156/p5.js-learning`,btnUrl:`https://p5js.jp/reference/`},t=`<ul>
 <li>
 <details><summary>図形の描画、色関連</summary>
 <ul>
