@@ -12,15 +12,14 @@
     "labels": ["security"]
   },
   "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": ["* 20-23 * * 5"]
+    "enabled": false
   },
   "packageRules": [
-     {
-       "matchUpdateTypes": ["patch"],
-       "matchCurrentVersion": "!/^0/",
-       "automerge": true,
-       "automergeType": "branch"
-    }
+    // {
+    //   "matchUpdateTypes": ["patch"],
+    //   "matchCurrentVersion": "!/^0/",
+    //   "automerge": true,
+    //   "automergeType": "branch"
+    // }
   ]
 }
